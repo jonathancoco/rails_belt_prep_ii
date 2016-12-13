@@ -1,0 +1,21 @@
+<%= form_for @product do |p| %>
+  <%= p.label :name %>:
+  <%= p.text_field :name %> <%= flash[:name] %><br>
+
+  <%= p.label :description %>:
+  <%= p.text_field :description %> <%= flash[:description] %><br>
+
+  <%= p.label :category_id %>:
+  <%= p.select :category_id, @categories.all.collect { |c| [ c.category, c.id ] }, include_blank: false %>
+  <br>
+
+  <%= p.label :pricing %>:
+  <%= p.text_field :pricing %> <%= flash[:pricing] %><br>
+
+  <%= p.submit %>
+
+<% end %>
+
+<br>
+<br>
+<%= link_to "Product Listing", products_path %> | <%= link_to "Back", :back %>

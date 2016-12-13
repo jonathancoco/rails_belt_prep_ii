@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="login registration">
+        <title>Registration - Product Listing</title>
+    </head>
+    <body>
+        <div id="login_container">
+            <h2>Registration</h2>
+            <form action='/users' method='POST'>
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <label for="name">Name:</label><input type="text" name="user[name]" value="<%= @user.name %>"><%= flash[:name] %><br>
+                <label for="email">Email:</label><input type="text" name="user[email]" value="<%= @user.email %>"><%= flash[:email] %><br>
+                <label for="password">Password:</label><input type="password" name="user[password]"><%= flash[:password] %><br>
+                <label for="confirm_password">Confirm Password:</label><input type="password" name="user[password_confirmation]"><br>
+                <input type="submit" value="Register" class="buttons">
+            </form>
+
+            <%= link_to "Already a user, please  login", new_session_path %>
+
+        </div>
+
+        <% flash[:errors] %>
+
+    </body>
+</html>

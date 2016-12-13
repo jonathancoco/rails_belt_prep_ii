@@ -1,0 +1,81 @@
+<h3>All Comments</h3>
+<table>
+    <thead>
+        <th>Comment</th>
+        <th>Product</th>
+        <th>User</th>
+        <th>Created</th>
+    </thead>
+    <% @comments.each do |comment| %>
+    <tr>
+        <td><%= comment.comment %></td>
+        <td><%= comment.product.name %></td>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.created_at %></td>
+    </tr>
+    <% end %>
+</table>
+<br>
+<br>
+<h3>Product Comment Counts</h3>
+<table>
+    <thead>
+        <th>Product</th>
+        <th>Comment Count</th>
+    </thead>
+    <% @products.each do |product| %>
+    <tr>
+        <td><%= product.name %></td>
+        <td><%= product.comments.count %></td>
+    </tr>
+    <% end %>
+</table>
+<br>
+<br>
+<h3>User Comment Counts</h3>
+<table>
+    <thead>
+        <th>User</th>
+        <th>Comment Count</th>
+    </thead>
+    <% @users.each do |user| %>
+    <tr>
+        <td><%= user.name %></td>
+        <td><%= user.comments.count %></td>
+    </tr>
+    <% end %>
+</table>
+<br>
+<br>
+
+<h3>Products the user has commented on...</h3>
+<br>
+<% @users.each do |user| %>
+
+  <% if user.comments.count > 0 %>
+    <p> <%=user.name%> has commented on: </p>
+
+    <table>
+        <thead>
+            <th>User</th>
+            <th>Comment Count</th>
+        </thead>
+        <% user.products.distinct().each do |product| %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.comments.where(user_id:user).count %></td>
+            </tr>
+        <% end %>
+    </table>
+    <br>
+
+  <% end %>
+
+<% end %>
+
+<br>
+<br>
+
+
+
+<%= link_to "Product Listing", products_path %> | <%= link_to "Back", :back %>

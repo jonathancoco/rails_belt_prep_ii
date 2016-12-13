@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BeltPrep</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="container">
+
+      <div id="header_1">
+        <% if current_user %>
+          <p>Welcome, <%= current_user.name %></p>
+        <% end %>
+      </div>
+
+      <div id="header_2">
+        <% if current_user %>
+          <%= link_to "Logout", session_path(current_user), :method => :delete %>
+        <% end %>
+      </div>
+      <br>
+      <br>
+
+      <%= yield %>
+    </div>
+</body>
+</html>
